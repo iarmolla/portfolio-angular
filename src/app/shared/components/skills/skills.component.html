@@ -1,0 +1,27 @@
+<section class='text-center flex flex-col gap-3 justify-center items-center xl:m-0 lg:h-screen three' id="skills">
+  <h4 class='link-project text-slate-500 text-2xl text-center rounded-sm uppercase p-2 mb-16 lg:mt-0'>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    HABILIDADES
+  </h4>
+  <section class='rounded-md text-center font-sans relative'>
+    <div class='flex flex-col justify-center items-center gap-14 text-8xl uppercase font-medium sm:grid sm:grid-cols-2 lg:grid lg:grid-cols-4'>
+      <ng-container>
+        @for (tech of projectService.technologies; track $index) {
+          <div (click)="randomProject(tech.name)" class='relative shadow-lg p-7 rounded-md border-2 border-gray-200 dark:border-gray-500'>
+            <span class='absolute text-xl -top-10 left-0 text-gray-600'>{{ tech.name }}</span>
+            <i [class]="tech.icon + ' ' + tech.color"></i>
+          </div>
+        }
+      </ng-container>
+    </div>
+    <div
+      class='hidden xl:text-5xl xl:mt-7 xl:text-slate-600 xl:cursor-pointer xl:animate-bounce xl:hover:text-slate-500 xl:transition-all xl:absolute xl:w-full xl:flex xl:justify-center xl:items-center'>
+      <a href="#projects">
+        <i class="fa fa-arrow-down"></i>
+      </a>
+    </div>
+  </section>
+</section>

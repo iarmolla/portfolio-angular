@@ -5,8 +5,8 @@
         <span></span>
         <span></span>
         <span></span>proyectos</h4>
-        @for (project of projects; track $index) {
-            <article class='shadow-lg p-3 text-gray-500 rounded-md border-2 border-gray-200 dark:border-gray-500 m-3 sm:mx-20 md:mx-20 lg:w-2/4'>
+        @for (project of (projectService.projects); track $index) {
+            <article class='shadow-lg p-3 text-gray-500 rounded-md border-2 border-gray-200 m-3 sm:mx-20 md:mx-20 lg:w-2/4'>
                 <div class='flex flex-row justify-between'>
                   <span class='uppercase text-left pl-3 text-gray-500 font-semibold mb-4'>{{project.title}}</span>
                   <div class='flex flex-row gap-2 text-xl cursor-pointer'>
