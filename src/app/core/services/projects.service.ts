@@ -56,13 +56,13 @@ export class ProjectsService {
     },
   ]
   technologies = [
-    { name: 'Angular', icon: 'fa-brands fa-angular', color: 'text-red-600' },
-    { name: 'Nodejs', icon: 'fa-brands fa-node', color: 'text-green-600' },
-    { name: 'Docker', icon: 'fa-brands fa-docker', color: 'text-sky-500' },
-    { name: 'AWS', icon: 'fa-brands fa-aws', color: '' },
-    { name: 'PHP', icon: 'fa-brands fa-php', color: 'text-indigo-500' },
-    { name: 'React', icon: 'fa-brands fa-react', color: 'text-cyan-400' },
-    { name: 'Git', icon: 'fa-solid fa-code-branch', color: 'text-orange-700' },
-    { name: 'SQL', icon: 'fa-solid fa-database', color: 'text-orange-400' },
+    { name: 'Angular', img: '../../../../assets/svgs/angular.svg' },
+    { name: 'Nodejs', img: '../../../../assets/svgs/nodejs.svg' },
+    { name: 'Docker', img: '../../../../assets/svgs/docker.svg' },
+    { name: 'AWS', img: '../../../../assets/svgs/aws.svg' },
+    { name: 'PHP', img: '../../../../assets/svgs/php.svg' },
+    { name: 'React', img: '../../../../assets/svgs/react.svg' },
+    { name: 'Git', img: '../../../../assets/svgs/git.svg', },
+    { name: 'SQL', img: '../../../../assets/svgs/mysql.svg' },
   ];
 }

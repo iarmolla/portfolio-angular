@@ -10,9 +10,9 @@
     <div class='flex flex-col justify-center items-center gap-14 text-8xl uppercase font-medium sm:grid sm:grid-cols-2 lg:grid lg:grid-cols-4'>
       <ng-container>
         @for (tech of projectService.technologies; track $index) {
-          <div (click)="randomProject(tech.name)" class='relative shadow-lg p-7 rounded-md border-2 border-gray-200 dark:border-gray-500'>
+          <div (click)="randomProject(tech.name)" class='relative shadow-lg rounded-md border-2 border-gray-200 dark:border-gray-500 min-h-36 min-w-36 p-6 flex justify-center items-center'>
             <span class='absolute text-xl -top-10 left-0 text-gray-600'>{{ tech.name }}</span>
-            <i [class]="tech.icon + ' ' + tech.color"></i>
+            <img src="{{tech.img}}" class="hover:opacity-75 transition-all cursor-pointer" alt="{{tech.name}}">
           </div>
         }
       </ng-container>
