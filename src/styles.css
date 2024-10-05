@@ -272,3 +272,25 @@ body {
     animation-iteration-count: 1;
     animation-name: submit;
 }
+
+.site-header {
+    background-color: #f8fafc;
+}
+
+body.dark .site-header {
+    background-color: #000000 !important;
+}
+.dark .slider {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background-color: #e7e5e5 !important;
+    transition: .4s;
+    border-radius: 34px;
+}
+.dark .slider::before {
+    background-color: #334155 !important;
+}
+.toggle-container {
+    margin: 0 !important;
+}
