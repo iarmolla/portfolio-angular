@@ -7,6 +7,9 @@ import { SkillsComponent } from './shared/components/skills/skills.component';
 import { ModalComponent } from './shared/components/modal/modal.component';
 import { ToggleComponent } from '@ngx-dark-mode-toggle/core';
 import { isPlatformBrowser } from '@angular/common';
+import { FullpageService } from './core/services/fullpage.service';
+import { Section } from './core/enums/Section';
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -14,6 +17,19 @@ import { isPlatformBrowser } from '@angular/common';
   templateUrl: './app.component.html'
 })
 export class AppComponent {
+  section = Section
   title = 'portfolio';
-
+  platformId = inject(PLATFORM_ID)
+  fullPageService = inject(FullpageService)
+  isBrowser: boolean;
+  constructor() {
+    this.isBrowser = isPlatformBrowser(this.platformId)
+  }
+  ngAfterViewInit() {
+    if (!this.isBrowser) return
+    this.fullPageService.showFullPage = window.innerWidth >= 1024
+    if(this.fullPageService.showFullPage) {
+      this.fullPageService.initialize()
+    }
+  }
 }

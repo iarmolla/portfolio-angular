@@ -1,6 +1,7 @@
 import { isPlatformBrowser } from '@angular/common';
-import { Component, ElementRef, inject, PLATFORM_ID, ViewChild } from '@angular/core';
+import { Component, inject, PLATFORM_ID } from '@angular/core';
 import { ToggleComponent } from '@ngx-dark-mode-toggle/core';
+import { FullpageService } from '../../../core/services/fullpage.service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,10 +14,11 @@ export class NavbarComponent {
   showDarkMode: string = 'false'
   isBrowser: boolean = false
   platformId = inject(PLATFORM_ID)
+  fullPageService = inject(FullpageService)
   constructor() {
     this.isBrowser = isPlatformBrowser(this.platformId)
   }
-  ngAfterViewInit() {
+  ngOnInit() {
     if(!this.isBrowser) return
     this.getStorage()
   }

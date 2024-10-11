@@ -1,20 +1,25 @@
 <app-navbar></app-navbar>
-<main class='lg:h-screen lg:overflow-scroll'>
-  <section
-    class='text-center pt-10 sm:pt-24 md:pt-10 flex flex-col gap-3 justify-center items-center xl:m-0 one lg:h-screen mt-24 mb-10 lg:m-0 lg:p-0'>
-    <article class='w-full xl:h-screen  flex flex-col justify-center items-center justify-items-center'>
-      <h1 class='text-slate-700 title text-5xl lg:text-9xl  xl:text-9xl'>Iván Armolla</h1>
-      <h2 class='text-4xl text-slate-800 lg:text-4xl xl:text-7xl'>Full Stack Developer.</h2>
-      <div
-        class='hidden xl:block xl:text-5xl xl:mt-16 xl:text-slate-600 xl:cursor-pointer xl:animate-bounce xl:hover:text-slate-500 xl:transition-all'>
-        <a href="#about">
-          <i class="fa fa-arrow-down"></i>
-        </a>
-      </div>
-    </article>
+<main id="fullpage">
+  <section id="init"
+    class='hidden lg:flex section text-center pt-10 sm:pt-24 md:pt-10 flex-col gap-3 justify-center items-center xl:m-0 one lg:h-screen mt-24 mb-10 lg:m-0 lg:p-0'>
+    <h1 class='text-slate-700 title text-5xl lg:text-9xl  xl:text-9xl'>Iván Armolla</h1>
+    <h2 class='text-4xl text-slate-800 lg:text-4xl xl:text-7xl'>Full Stack Developer.</h2>
+    <div
+      class='hidden xl:block xl:text-5xl xl:mt-16 xl:text-slate-600 xl:cursor-pointer xl:animate-bounce xl:hover:text-slate-500 xl:transition-all'>
+      <a (click)="this.fullPageService.moveToSection(section.ABOUT)">
+        <i class="fa fa-arrow-down"></i>
+      </a>
+    </div>
   </section>
-  <app-about></app-about>
-  <app-skills></app-skills>
-  <app-project-list></app-project-list>
-  <app-modal></app-modal>
+  <app-about class="section"></app-about>
+  <app-skills class="section"></app-skills>
+  <app-project-list class="section"></app-project-list>
 </main>
+<app-modal></app-modal>
+<div>
+  <button
+    class="top-btn fixed right-10 bottom-10 z-10 rounded-full px-5 py-3 bg-gray-900 text-white dark:bg-slate-800"
+    (click)="this.fullPageService.moveToSection(fullPageService.showFullPage ? section.INIT : section.ABOUT)">
+    <i class="fa fa-arrow-up"></i>
+  </button>
+</div>

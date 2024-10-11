@@ -1,11 +1,11 @@
 @if(isBrowser) {
-  <nav class='site-header z-10 text-neutral-400 flex justify-between items-center min-w-full shadow-sm py-4 px-5  absolute top-0'>
-      <div>
+  <nav class='site-header z-10 text-neutral-400 flex justify-between sm:justify-between items-center min-w-full shadow-sm py-4 px-5 fixed top-0'>
+      <div class="hidden sm:flex">
         <h1 class='text-sm'>Portfolio</h1>
       </div>
-      <section class='flex flex-row items-center gap-3'>
+      <section class='flex flex-row justify-between text-center w-full sm:w-auto items-center gap-3'>
         <section class='navbar-item'>
-          <a href="#about" class='link item-link text-sm'>
+          <a (click)="fullPageService.moveToSection(fullPageService.section.ABOUT)" class='link item-link text-sm'>
             Sobre mi
             <span class="item-link-one"></span>
           </a>
@@ -17,7 +17,7 @@
           </a>
         </section>
         <section class='navbar-item'>
-          <a href="#projects" class='link item-link text-sm'>
+          <a (click)="fullPageService.moveToSection(fullPageService.section.PROJECTS)" class='link item-link text-sm'>
             Proyectos
             <span class="item-link-one"></span>
           </a>

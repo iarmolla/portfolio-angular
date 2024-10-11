@@ -294,3 +294,11 @@ body.dark .site-header {
 .toggle-container {
     margin: 0 !important;
 }
+
+/* @media (min-width: 1024px) {
+    .section {
+      min-height: 100vh !important;
+      padding: 0 !important;
+    }
+  }
+   */
