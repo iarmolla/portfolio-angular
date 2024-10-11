@@ -5,5 +5,5 @@ export const environment = {
         email: 'ivan.armolla@gmail.com',
         github: 'https://github.com/iarmolla'
     },
-    formspreeUrl: 'https://formspree.io/f/mdovnqgv'
+    formspreeUrl: ''
 }
