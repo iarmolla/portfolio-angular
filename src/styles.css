@@ -302,3 +302,6 @@ body.dark .site-header {
     }
   }
    */
+#init  .fp-overflow{
+    overflow-y: hidden;
+}
