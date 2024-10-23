@@ -303,5 +303,5 @@ body.dark .site-header {
   }
    */
 #init  .fp-overflow{
-    overflow-y: hidden;
+    overflow-y: hidden !important;
 }
