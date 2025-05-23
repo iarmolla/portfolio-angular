@@ -5,7 +5,6 @@ import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { ProjectListComponent } from './shared/components/project-list/project-list.component';
 import { SkillsComponent } from './shared/components/skills/skills.component';
 import { ModalComponent } from './shared/components/modal/modal.component';
-import { ToggleComponent } from '@ngx-dark-mode-toggle/core';
 import { isPlatformBrowser } from '@angular/common';
 import { FullpageService } from './core/services/fullpage.service';
 import { Section } from './core/enums/Section';
@@ -13,7 +12,7 @@ import { Section } from './core/enums/Section';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, AboutComponent, SkillsComponent, NavbarComponent, ProjectListComponent, ModalComponent, ToggleComponent],
+  imports: [RouterOutlet, AboutComponent, SkillsComponent, NavbarComponent, ProjectListComponent, ModalComponent],
   templateUrl: './app.component.html'
 })
 export class AppComponent {

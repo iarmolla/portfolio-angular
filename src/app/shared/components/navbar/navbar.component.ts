@@ -1,12 +1,11 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Component, inject, PLATFORM_ID } from '@angular/core';
-import { ToggleComponent } from '@ngx-dark-mode-toggle/core';
 import { FullpageService } from '../../../core/services/fullpage.service';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [ToggleComponent],
+  imports: [],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })

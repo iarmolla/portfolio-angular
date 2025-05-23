@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Section } from '../enums/Section';
-
 declare var fullpage: any;
 @Injectable({
   providedIn: 'root'
@@ -12,7 +11,7 @@ export class FullpageService {
   constructor() {}
   initialize() {
     if(this.fpInstance) {
-      this.fpInstance.reBuild() 
+      this.fpInstance.reBuild()
       this.removeOverflow()
       return
     }
