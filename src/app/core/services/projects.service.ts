@@ -15,14 +15,6 @@ export class ProjectsService {
       repository: 'https://github.com/iarmolla/ecommerce-api'
     },
     {
-      title: 'Dashboard',
-      description: 'Panel de administración: El objetivo es obtener, un control organizado de los empleados, que estén registrados. El panel ofrece gráficos del sueldo que recibe el empleado para tener una mejor visualización del mismo, y poder tomar decisiones con lo anterior.',
-      stack: ['React', 'Tailwind', 'Recharts', 'MySQL', 'Express', 'Docker'],
-      img: '../../../assets/images/dashboard.png',
-      link: 'https://chimerical-mandazi-47f4f8.netlify.app/login',
-      repository: 'https://github.com/iarmolla/dashboard-react'
-    },
-    {
       title: 'Chat Socket.IO',
       description: 'Este proyecto consiste en un chat en tiempo real construido con React en el frontend y Node.js en el backend. El objetivo es mostrar cómo se puede crear una aplicación de chat funcional utilizando estas tecnologías.',
       stack: ['React', 'Tailwind', 'Nodejs', 'MongoDB', 'Docker'],
@@ -31,11 +23,19 @@ export class ProjectsService {
       repository: 'https://github.com/iarmolla/chat-react'
     },
     {
+      title: 'Dashboard',
+      description: 'Panel de administración: El objetivo es obtener, un control organizado de los empleados, que estén registrados. El panel ofrece gráficos del sueldo que recibe el empleado para tener una mejor visualización del mismo, y poder tomar decisiones con lo anterior.',
+      stack: ['React', 'Tailwind', 'Recharts', 'MySQL', 'Express', 'Docker'],
+      img: '../../../assets/images/dashboard.png',
+      link: 'https://chimerical-mandazi-47f4f8.netlify.app/login',
+      repository: 'https://github.com/iarmolla/dashboard-react'
+    },
+    {
       title: 'Proet Cursos',
       description: 'Proet aplicación de cursos para suscribirte a los distintos cursos. Sección de compras con tarjeta de credito validaciones de email y envios del mismo al finalizar la compra.',
       stack: ['React', 'Email JS', 'Abstract API', 'Docker'],
       img: '../../../assets/images/proet.PNG',
-      link: 'https://ecommerce-167.netlify.app/',
+      link: 'https://proet-e6dfc9.netlify.app',
       repository: 'https://github.com/iarmolla/course-react'
     },
     {
@@ -46,14 +46,14 @@ export class ProjectsService {
       link: 'https://giphy-645.netlify.app/',
       repository: 'https://github.com/iarmolla/giphy-app'
     },
-    {
-      title: 'Rick and Morty API',
-      description: 'Web app para ver los personajes de Rick and Morty ,episodios y fechas de estreno, para las llamadas a la API se hizo usó de AXIOS.',
-      stack: ['React', 'Tailwind', 'Rick and Morty API', 'Docker'],
-      img: '../../../assets/images/rick.PNG',
-      link: 'https://magenta-hummingbird-5754c9.netlify.app/',
-      repository: 'https://github.com/iarmolla/rick-and-morty-react'
-    },
+    // {
+    //   title: 'Rick and Morty API',
+    //   description: 'Web app para ver los personajes de Rick and Morty ,episodios y fechas de estreno, para las llamadas a la API se hizo usó de AXIOS.',
+    //   stack: ['React', 'Tailwind', 'Rick and Morty API', 'Docker'],
+    //   img: '../../../assets/images/rick.PNG',
+    //   link: 'https://magenta-hummingbird-5754c9.netlify.app/',
+    //   repository: 'https://github.com/iarmolla/rick-and-morty-react'
+    // },
   ]
   technologies = [
     { name: 'Angular', img: '../../../../assets/svgs/angular.svg' },
