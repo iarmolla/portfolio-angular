@@ -1,0 +1,64 @@
+<section id="contacto" class="py-24">
+  <div appReveal class="reveal-up wrap grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
+    <div>
+      <h2 class="section-title">Hablemos</h2>
+      <p class="section-lead text-lg">¿Tenés un proyecto, una búsqueda o una pregunta? Escribime y te respondo a la brevedad.</p>
+
+      <div class="mt-10 flex items-center gap-2">
+        <a [href]="'mailto:' + socialMedia.email" class="font-mono text-fg hover:text-accent transition-colors break-all">{{ socialMedia.email }}</a>
+        <button type="button" class="icon-btn shrink-0" (click)="copyEmail()" [attr.aria-label]="copied() ? 'Email copiado' : 'Copiar email'" [title]="copied() ? 'Copiado' : 'Copiar email'">
+          <i class="fa-regular" [class.fa-copy]="!copied()" [class.fa-solid]="copied()" [class.fa-check]="copied()" [class.text-ok]="copied()" aria-hidden="true"></i>
+        </button>
+        <span class="font-mono text-xs text-ok" aria-live="polite">{{ copied() ? 'copiado' : '' }}</span>
+      </div>
+      <div class="mt-6 flex flex-wrap gap-3">
+        <a [href]="socialMedia.linkedin" target="_blank" rel="noopener" class="btn-ghost"><i class="fa-brands fa-linkedin" aria-hidden="true"></i> LinkedIn</a>
+        <a [href]="socialMedia.github" target="_blank" rel="noopener" class="btn-ghost"><i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a>
+      </div>
+    </div>
+
+    <div class="rounded-xl border border-line bg-surface p-6 sm:p-8" aria-live="polite">
+      @if (status == 'success') {
+        <div class="status-in flex flex-col items-center text-center gap-3 py-10">
+          <span class="flex items-center justify-center w-14 h-14 rounded-full bg-ok/15 text-ok text-2xl">
+            <i class="fa-solid fa-check" aria-hidden="true"></i>
+          </span>
+          <h3 class="text-xl font-semibold text-fg">¡Mensaje enviado!</h3>
+          <p class="text-muted max-w-sm">Gracias por escribirme. Te respondo a la brevedad.</p>
+          <button type="button" class="btn-ghost mt-3" (click)="status = 'idle'">Enviar otro mensaje</button>
+        </div>
+      } @else {
+        <form [formGroup]="userForm" (ngSubmit)="send()" novalidate class="flex flex-col gap-5">
+          <div>
+            <label for="contact-email" class="block mb-2 font-mono text-xs uppercase tracking-[.18em] text-muted">Tu email</label>
+            <input formControlName="email" type="email" id="contact-email" autocomplete="email" placeholder="nombre@empresa.com" class="field"
+              [attr.aria-invalid]="userForm.get('email')?.touched && userForm.get('email')?.invalid" aria-describedby="email-error">
+            <p id="email-error" class="field-error">
+              @if (userForm.get('email')?.touched && userForm.get('email')?.errors?.['required']) { Ingresá tu email. }
+              @if (userForm.get('email')?.touched && userForm.get('email')?.errors?.['email']) { Revisá el formato del email. }
+            </p>
+          </div>
+          <div>
+            <label for="contact-message" class="block mb-2 font-mono text-xs uppercase tracking-[.18em] text-muted">Mensaje</label>
+            <textarea formControlName="message" id="contact-message" rows="5" placeholder="Contame en qué puedo ayudarte" class="field resize-y"
+              [attr.aria-invalid]="userForm.get('message')?.touched && userForm.get('message')?.invalid" aria-describedby="message-error"></textarea>
+            <p id="message-error" class="field-error">
+              @if (userForm.get('message')?.touched && userForm.get('message')?.errors?.['required']) { Escribí un mensaje. }
+              @if (userForm.get('message')?.touched && userForm.get('message')?.errors?.['minlength']) { El mensaje necesita al menos 10 caracteres. }
+            </p>
+          </div>
+          @if (status == 'error') {
+            <div class="status-in flex gap-3 items-start p-3 rounded-lg border border-red-500/30 bg-red-500/10 text-sm text-red-700 dark:text-red-300" role="alert">
+              <i class="fa-solid fa-circle-exclamation mt-0.5" aria-hidden="true"></i>
+              <p>No se pudo enviar el mensaje. Probá de nuevo en unos minutos o escribime directamente al email.</p>
+            </div>
+          }
+          <button type="submit" class="btn-primary self-start" [disabled]="sending">
+            {{ sending ? 'Enviando…' : 'Enviar mensaje' }}
+            @if (!sending) { <i class="fa-solid fa-paper-plane text-sm" aria-hidden="true"></i> }
+          </button>
+        </form>
+      }
+    </div>
+  </div>
+</section>

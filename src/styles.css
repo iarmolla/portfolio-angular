@@ -2,211 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-.link {
-    transition: 300ms;
+/* Design tokens as RGB triplets so Tailwind can apply opacity (see tailwind.config.js) */
+:root {
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+    --bg: 238 242 248;
+    --surface: 247 249 252;
+    --line: 211 220 234;
+    --fg: 18 27 54;
+    --muted: 86 98 127;
+    --accent: 143 86 0;
+    --ok: 11 122 103;
+    color-scheme: light;
 }
 
-nav {
-    position: absolute;
-    top: 0;
-    z-index: 100;
+html.dark {
+    --bg: 11 18 38;
+    --surface: 18 27 54;
+    --line: 36 48 79;
+    --fg: 230 234 245;
+    --muted: 143 155 184;
+    --accent: 255 181 71;
+    --ok: 94 225 192;
+    color-scheme: dark;
 }
-
-.link-project {
-    position: relative;
-    display: inline-block;
-    color: #939393;
-    text-decoration: none;
-    text-transform: uppercase;
-    transition: 0.5s;
-    letter-spacing: 2px;
-    overflow: hidden;
-    text-align: center;
-    cursor: auto;
-}
-
-.link-project:nth-child(1) {
-    filter: hue-rotate(270deg);
-}
-
-.link-project:nth-child(2) {
-    filter: hue-rotate(110deg);
-}
-
-.link-project span {
-    position: absolute;
-    display: block;
-}
-
-.link-project span:nth-child(1) {
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #1d1c1cb4);
-    animation: animate1 3s linear infinite;
-}
-
-@keyframes animate1 {
-    0% {
-        left: -100%;
-    }
-
-    50%,
-    100% {
-        left: 100%;
-    }
-}
-
-.link-project span:nth-child(2) {
-    top: -100%;
-    right: 0;
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(180deg, transparent, #1f1e1e97);
-    animation: animate2 3s linear infinite;
-    animation-delay: 0.25s;
-}
-
-@keyframes animate2 {
-    0% {
-        top: -100%;
-    }
-
-    50%,
-    100% {
-        top: 100%;
-    }
-}
-
-.link-project span:nth-child(3) {
-    bottom: 0;
-    right: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(270deg, transparent, #2c2b2b98);
-    animation: animate3 3s linear infinite;
-    animation-delay: 0.5s;
-}
-
-@keyframes animate3 {
-    0% {
-        right: -100%;
-    }
-
-    50%,
-    100% {
-        right: 100%;
-    }
-}
-
-@keyframes animate4 {
-    0% {
-        bottom: -100%;
-    }
-
-    50%,
-    100% {
-        bottom: 100%;
-    }
-}
-
-.navbar-item {
-    position: relative;
-    width: 100%;
-    transition: 400ms;
-}
-
-.item-link-one {
-    transition: 300ms;
-    content: "";
-    position: absolute;
-    top: 40px;
-    left: 0;
-    min-width: 50px;
-    width: 100%;
-    background: #767676f7;
-    opacity: 1;
-    height: 3px;
-    opacity: 0;
-}
-
-.item-link:hover>.item-link-one {
-    transition: 300ms;
-    opacity: 1;
-}
-
-.title {
-    display: block;
-    white-space: nowrap;
-    border-right: 2px solid;
-    width: 12ch;
-    animation: typing 2s steps(12), blink .5s infinite step-end alternate;
-    overflow: hidden;
-}
-
-.image-project {
-    transition: 300ms;
-    object-fit: cover;
-    max-width: 80%;
-    overflow-clip-margin: content-box;
-    overflow: clip;
-    border-radius: 8px;
-    min-height: 50%;
-}
-
-.image-project:hover {
-    transition: 300ms;
-}
-
-@keyframes typing {
-    from {
-        width: 0;
-    }
-}
-
-@keyframes blink {
-    50% {
-        border-color: transparent;
-    }
-}
-
-
-main {
-    /* scroll-snap-type: y mandatory;
-    overflow-y: scroll;
-    height: 100vh; */
-    scroll-behavior: smooth;
-    scroll-padding-bottom: 5rem;
-}
-
-
-main::-webkit-scrollbar {
-    display: none;
-}
-
-::-webkit-scrollbar {
-    width: 9px;
-    height: 9px;
-}
-
-::-webkit-scrollbar-button {
-    width: 0px;
-    height: 0px;
-}
-
-
-.form__submit {
-    color: rgba(150, 148, 148, 0.674);
-    background-color: #eaeaea;
-    transition: 300ms;
-}
-
-.form__submit:hover {
-    transition: 300ms;
-    background-color: rgba(224, 224, 224, 0.9);
-}
-
 
 html {
     scroll-behavior: smooth;
@@ -214,94 +33,97 @@ html {
 
 body {
     margin: 0;
-    padding: 0;
+    background-color: rgb(var(--bg));
+    background-image: radial-gradient(rgb(var(--line) / .55) 1px, transparent 1px);
+    background-size: 26px 26px;
+    transition: background-color .3s ease, color .3s ease;
 }
 
-@keyframes test {
-    0% {
-        transform: scale(0.1) translateY(50%);
+section[id] {
+    scroll-margin-top: 4.5rem;
+}
+
+:focus-visible {
+    outline: 2px solid rgb(var(--accent));
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+/* Theme switch: the circular reveal (ThemeService) replaces per-element color fades */
+html.theme-switching *,
+html.theme-switching *::before,
+html.theme-switching *::after {
+    transition: none !important;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+}
+
+::selection {
+    background: rgb(var(--accent) / .3);
+}
+
+@layer components {
+    .wrap {
+        @apply max-w-6xl mx-auto px-5 sm:px-8;
     }
 
-    50% {
-        transform: scale(1);
+    .section-title {
+        @apply font-display text-4xl sm:text-5xl font-bold tracking-tight text-fg;
+    }
+
+    .section-lead {
+        @apply mt-3 text-muted max-w-xl;
+    }
+
+    .eyebrow {
+        @apply font-mono text-xs uppercase tracking-[.18em] text-accent;
+    }
+
+    .chip {
+        @apply font-mono text-xs px-2 py-0.5 rounded border border-line text-muted bg-bg/40;
+    }
+
+    .btn-primary {
+        @apply inline-flex items-center gap-2 rounded-md bg-accent text-bg font-medium px-4 py-2.5 transition hover:brightness-110 active:scale-[.98] disabled:opacity-60 disabled:cursor-not-allowed;
+    }
+
+    .btn-ghost {
+        @apply inline-flex items-center gap-2 rounded-md border border-line text-fg px-4 py-2.5 transition hover:border-muted active:scale-[.98];
+    }
+
+    .icon-btn {
+        @apply inline-flex items-center justify-center w-9 h-9 rounded-md text-muted transition hover:text-fg hover:bg-line/50;
+    }
+
+    .link-accent {
+        @apply text-accent underline-offset-4 hover:underline;
     }
 }
 
-.modal-animate {
-    animation: test 2s;
+/* Fade-up used with the appReveal directive */
+.reveal-up {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity .6s var(--ease-out), transform .6s var(--ease-out);
 }
 
-.error-text {
-    display: block;
+.reveal-up.is-visible {
     opacity: 1;
-    animation-fill-mode: both;
-    animation-duration: 875ms;
-    animation-delay: 125ms;
-    animation-iteration-count: 1;
-    animation-name: errors;
+    transform: none;
 }
 
-@keyframes errors {
-    0% {
-        opacity: 0;
-        transform: translateY(0px);
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
     }
 
-    100% {
+    .reveal-up {
         opacity: 1;
-        transform: translateY(10px);
+        transform: none;
+        transition: none;
     }
-}
-
-@keyframes submit {
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
-}
-
-.submit {
-    display: block;
-    opacity: 1;
-    animation-fill-mode: both;
-    animation-duration: 875ms;
-    animation-delay: 125ms;
-    animation-iteration-count: 1;
-    animation-name: submit;
-}
-
-.site-header {
-    background-color: #f8fafc;
-}
-
-body.dark .site-header {
-    background-color: #000000 !important;
-}
-.dark .slider {
-    position: absolute;
-    cursor: pointer;
-    inset: 0;
-    background-color: #e7e5e5 !important;
-    transition: .4s;
-    border-radius: 34px;
-}
-.dark .slider::before {
-    background-color: #334155 !important;
-}
-.toggle-container {
-    margin: 0 !important;
-}
-
-/* @media (min-width: 1024px) {
-    .section {
-      min-height: 100vh !important;
-      padding: 0 !important;
-    }
-  }
-   */
-#init  .fp-overflow{
-    overflow-y: hidden !important;
 }

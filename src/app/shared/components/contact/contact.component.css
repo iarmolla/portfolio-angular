@@ -1,0 +1,48 @@
+.field {
+    display: block;
+    width: 100%;
+    padding: .7rem .9rem;
+    border-radius: .5rem;
+    border: 1px solid rgb(var(--line));
+    background: rgb(var(--bg));
+    color: rgb(var(--fg));
+    transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+.field::placeholder {
+    color: rgb(var(--muted) / .7);
+}
+
+.field:focus {
+    outline: none;
+    border-color: rgb(var(--accent));
+    box-shadow: 0 0 0 3px rgb(var(--accent) / .18);
+}
+
+.field[aria-invalid="true"] {
+    border-color: rgb(239 68 68 / .7);
+}
+
+.field-error {
+    min-height: 1.25rem;
+    margin-top: .35rem;
+    font-size: .8rem;
+    color: rgb(239 68 68);
+}
+
+.status-in {
+    animation: status-in .35s var(--ease-out);
+}
+
+@keyframes status-in {
+    from {
+        opacity: 0;
+        transform: translateY(6px) scale(.98);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .status-in {
+        animation: none;
+    }
+}

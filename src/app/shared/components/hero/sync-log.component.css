@@ -1,0 +1,70 @@
+.terminal {
+    box-shadow: 0 30px 80px -30px rgb(0 0 0 / .45), 0 0 0 1px rgb(var(--accent) / .04);
+}
+
+.leader {
+    border-bottom: 1px dotted rgb(var(--line));
+    transform: translateY(-.3rem);
+}
+
+.cursor {
+    display: inline-block;
+    width: .55em;
+    height: 1.05em;
+    vertical-align: -.15em;
+    background: rgb(var(--accent));
+    animation: blink 1s step-end infinite;
+}
+
+.log-line {
+    animation: line-in .3s var(--ease-out);
+}
+
+.spinner {
+    display: inline-block;
+    width: .85em;
+    height: .85em;
+    margin-right: .35em;
+    border-radius: 9999px;
+    border: 2px solid rgb(var(--line));
+    border-top-color: rgb(var(--accent));
+    animation: spin .7s linear infinite;
+}
+
+.status-ok {
+    animation: status-in .18s var(--ease-out);
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes status-in {
+    from {
+        opacity: 0;
+        transform: scale(.9);
+    }
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+@keyframes line-in {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cursor,
+    .log-line,
+    .status-ok {
+        animation: none;
+    }
+}

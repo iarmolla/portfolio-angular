@@ -1,33 +1,27 @@
-<section class='flex flex-col gap-3  mx-5 pt-24 justify-center text-center lg:text-center lg:justify-center lg:items-center xl:m-0 two lg:h-screen items-center px-5 lg:p-0' id="about1">
+<section id="sobre-mi" class="py-24">
+  <div appReveal class="reveal-up wrap grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)]">
     <div>
-      <button class='link-project text-slate-500 text-2xl text-center rounded-sm uppercase p-2'>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        {{windowWidth > 1024 ? 'Sobre mí' : 'FullStack Developer.'}}
-      </button>
+      <h2 class="section-title">Sobre mí</h2>
     </div>
-    <article>
-      <p class='text-gray-600 text-left md:text-center  lg:mx-48 xl:text-2xl' >
-        ¡Hola! Soy Iván. Mi interés por la programación comenzó con el deseo de crear videojuegos, lo cual me llevó a explorar este mundo. Después de terminar la secundaria, comencé a investigar cómo desarrollar juegos y, en el proceso, descubrí el desarrollo web.
-        Desde entonces, decidí enfocarme en el desarrollo web, comenzando por establecer una base sólida en HTML y CSS a través de diversos cursos. Para continuar mi formación, también me inscribí en una tecnicatura en análisis de sistemas, con el objetivo de expandir mis habilidades y conocimientos en el campo del desarrollo.
-      </p>
-    </article>
-    <article class='flex justify-center gap-8 cursor-pointer text-gray-600 py-6 text-3xl'>
-      <a href="{{socialMedia.linkedin}}" target="_blank" aria-label="LinkedIn de Iván Armolla" rel="noopener">
-        <i class="fa-brands fa-linkedin"></i>
-      </a>
-      <a href="mailto:{{socialMedia.email}}" target="_blank" aria-label="Enviar correo a Iván Armolla" rel="noopener">
-        <i class="fa-solid fa-envelope"></i>
-      </a>
-      <a href="{{socialMedia.github}}" target="_blank" aria-label="GitHub de Iván Armolla" rel="noopener">
-        <i class="fa-brands fa-github"></i>
-      </a>
-    </article>
-    <div class='hidden xl:block xl:text-5xl xl:mt-7 xl:text-slate-600 xl:cursor-pointer xl:animate-bounce xl:hover:text-slate-500 xl:transition-all'>
-      <a (click)="fullPageService.moveToSection(fullPageService.section.SKILLS)">
-        <i class="fa fa-arrow-down"></i>
-      </a>
+    <div>
+      <div class="flex flex-col gap-4 text-lg leading-relaxed text-muted">
+        <p>
+          Empecé a programar porque quería hacer videojuegos. Buscando cómo hacerlos descubrí el desarrollo web y me quedé:
+          primero una base sólida de HTML y CSS, después la Tecnicatura en Análisis de Sistemas, y hoy la Licenciatura en Gestión de la Información.
+        </p>
+        <p>
+          Trabajé de punta a punta, desde interfaces en Angular hasta APIs en Node.js y NestJS y despliegues en AWS y GCP.
+          Hoy me dedico al backend: <span class="text-fg">integraciones de pago, procesamiento de transacciones y conciliación financiera</span>.
+        </p>
+      </div>
+      <dl class="mt-10 grid sm:grid-cols-2 gap-px rounded-lg overflow-hidden border border-line bg-line">
+        @for (fact of facts; track fact.label) {
+          <div class="bg-surface px-5 py-4">
+            <dt class="font-mono text-xs uppercase tracking-[.18em] text-muted">{{ fact.label }}</dt>
+            <dd class="mt-1.5 text-fg">{{ fact.value }}</dd>
+          </div>
+        }
+      </dl>
     </div>
-  </section>
+  </div>
+</section>

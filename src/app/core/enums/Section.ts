@@ -1,6 +1,8 @@
 export enum Section {
-    INIT = 'init',
-    ABOUT = 'about',
-    SKILLS = 'skills',
-    PROJECTS = 'projects'
+    INIT = 'inicio',
+    ABOUT = 'sobre-mi',
+    EXPERIENCE = 'experiencia',
+    STACK = 'stack',
+    PROJECTS = 'proyectos',
+    CONTACT = 'contacto'
 }

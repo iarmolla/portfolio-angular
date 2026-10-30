@@ -1,0 +1,38 @@
+.stack-row {
+    transition: background-color .15s ease;
+}
+
+.stack-row:hover {
+    background-color: rgb(var(--line) / .35);
+}
+
+.dot {
+    display: inline-block;
+    width: .45rem;
+    height: .45rem;
+    border-radius: 9999px;
+    background: rgb(var(--line));
+}
+
+.dot.is-used {
+    width: .8rem;
+    height: .8rem;
+    background: rgb(var(--accent));
+    box-shadow: 0 0 0 4px rgb(var(--accent) / .15);
+    opacity: 0;
+    transform: scale(.5);
+    transition: opacity .3s ease-out, transform .45s var(--ease-out);
+}
+
+.stack-matrix.is-visible .dot.is-used {
+    opacity: 1;
+    transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .dot.is-used {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}

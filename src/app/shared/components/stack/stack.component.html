@@ -1,0 +1,70 @@
+<section id="stack" class="py-24">
+  <div class="wrap">
+    <header appReveal class="reveal-up">
+      <h2 class="section-title">Stack</h2>
+      <p class="section-lead">Qué tecnologías usé y dónde, en orden cronológico.</p>
+    </header>
+
+    <!-- Desktop: matrix of technology × workplace -->
+    <div appReveal class="stack-matrix reveal-up hidden md:block mt-12 rounded-xl border border-line bg-surface overflow-hidden">
+      <table class="w-full table-fixed text-sm">
+        <caption class="sr-only">Tecnologías y los trabajos o proyectos donde las usé</caption>
+        <thead>
+          <tr class="border-b border-line">
+            <th scope="col" class="w-[28%] px-5 py-4 text-left font-mono text-xs font-normal uppercase tracking-[.18em] text-muted">Tecnología</th>
+            @for (column of columns; track column.label) {
+              <th scope="col" class="px-3 py-4 text-center align-bottom">
+                <span class="block font-medium text-fg">{{ column.label }}</span>
+                <span class="block mt-0.5 font-mono text-xs font-normal text-muted">{{ column.period }}</span>
+              </th>
+            }
+          </tr>
+        </thead>
+        @for (group of groups; track group.title) {
+          <tbody>
+            <tr>
+              <th scope="rowgroup" [attr.colspan]="columns.length + 1" class="px-5 pt-6 pb-2 text-left eyebrow font-normal">{{ group.title }}</th>
+            </tr>
+            @for (row of group.rows; track row.name; let r = $index) {
+              <tr class="stack-row">
+                <th scope="row" class="px-5 py-2.5 text-left font-medium text-fg">{{ row.name }}</th>
+                @for (names of row.cells; track $index; let c = $index) {
+                  <td class="px-3 py-2.5 text-center">
+                    @if (names.length) {
+                      <span class="dot is-used" [title]="names.join(', ')" [style.transition-delay.ms]="c * 90 + r * 25">
+                        <span class="sr-only">Sí: {{ names.join(', ') }}</span>
+                      </span>
+                    } @else {
+                      <span class="dot" aria-hidden="true"></span><span class="sr-only">No</span>
+                    }
+                  </td>
+                }
+              </tr>
+            }
+          </tbody>
+        }
+      </table>
+    </div>
+
+    <!-- Mobile: each technology with the places where it was used -->
+    <div class="md:hidden mt-10 flex flex-col gap-8">
+      @for (group of groups; track group.title) {
+        <div appReveal class="reveal-up">
+          <h3 class="eyebrow">{{ group.title }}</h3>
+          <ul class="mt-3 divide-y divide-line border-y border-line">
+            @for (row of group.rows; track row.name) {
+              <li class="py-3 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2">
+                <span class="font-medium text-fg">{{ row.name }}</span>
+                <span class="flex flex-wrap gap-1.5">
+                  @for (place of usedIn(row); track place) {
+                    <span class="chip">{{ place }}</span>
+                  }
+                </span>
+              </li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
+  </div>
+</section>

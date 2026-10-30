@@ -1,6 +1,7 @@
+import { afterNextRender, Component, HostListener, inject, NgZone, OnDestroy, PLATFORM_ID, signal } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { Component, inject, PLATFORM_ID } from '@angular/core';
-import { FullpageService } from '../../../core/services/fullpage.service';
+import { ThemeService } from '../../../core/services/theme.service';
+import { Section } from '../../../core/enums/Section';
 
 @Component({
   selector: 'app-navbar',
@@ -9,28 +10,49 @@ import { FullpageService } from '../../../core/services/fullpage.service';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
-export class NavbarComponent {
-  showDarkMode: string = 'false'
-  isBrowser: boolean = false
+export class NavbarComponent implements OnDestroy {
+  themeService = inject(ThemeService)
   platformId = inject(PLATFORM_ID)
-  fullPageService = inject(FullpageService)
+  zone = inject(NgZone)
+  section = Section
+  links = [
+    { id: Section.EXPERIENCE, label: 'Experiencia' },
+    { id: Section.STACK, label: 'Stack' },
+    { id: Section.PROJECTS, label: 'Proyectos' },
+  ]
+  active = signal<string>(Section.INIT)
+  scrolled = signal(false)
+  menuOpen = signal(false)
+  observer?: IntersectionObserver
   constructor() {
-    this.isBrowser = isPlatformBrowser(this.platformId)
+    // Runs only in the browser, once every section is in the DOM
+    afterNextRender(() => this.observeSections())
   }
-  ngOnInit() {
-    if(!this.isBrowser) return
-    this.getStorage()
+  observeSections() {
+    if (typeof IntersectionObserver === 'undefined') return
+    // A section counts as active while it crosses the middle band of the viewport
+    this.observer = new IntersectionObserver((entries) => {
+      const visible = entries.find((entry) => entry.isIntersecting)
+      if (visible) this.zone.run(() => this.active.set(visible.target.id))
+    }, { rootMargin: '-45% 0px -50% 0px' })
+    Object.values(Section).forEach((id) => {
+      const element = document.getElementById(id)
+      if (element) this.observer!.observe(element)
+    })
+    this.onScroll()
   }
-  getStorage() {
-    const darkModeStorage = localStorage.getItem('darkModeEnabled')
-    this.showDarkMode = darkModeStorage as unknown as string
+  @HostListener('window:scroll')
+  onScroll() {
+    if (!isPlatformBrowser(this.platformId)) return
+    this.scrolled.set(window.scrollY > 8)
   }
-  openCv() {
-    window.open('../../../../assets/ivanarmolla.pdf', '_blank')
+  toggleMenu() {
+    this.menuOpen.update((open) => !open)
   }
-  darkMode() {
-    const btn = document.querySelector("input[type='checkbox']") as HTMLElement
-    if(btn) btn?.click()
-    this.getStorage()
+  closeMenu() {
+    this.menuOpen.set(false)
+  }
+  ngOnDestroy() {
+    this.observer?.disconnect()
   }
 }

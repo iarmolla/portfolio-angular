@@ -1,14 +1,30 @@
 <!doctype html>
-<html lang="en">
+<html lang="es" class="dark">
 <head>
   <meta charset="utf-8">
-  <title>Portfolio</title>
+  <title>Iván Armolla | Backend & Full Stack Developer</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Portfolio de Ivan Armolla, desarrollador fullstack especializado en aplicaciones web modernas con Angular, Node.js y tecnologías frontend y backend.">
+  <meta name="description" content="Iván Armolla, desarrollador backend y full stack en Buenos Aires. Integraciones de pago y conciliación con Node.js, y aplicaciones web con Angular.">
+  <meta property="og:title" content="Iván Armolla | Backend & Full Stack Developer">
+  <meta property="og:description" content="Iván Armolla, desarrollador backend y full stack en Buenos Aires. Integraciones de pago y conciliación con Node.js, y aplicaciones web con Angular.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#0b1226">
+  <script>
+    // Dark is the default; apply a saved light choice before first paint to avoid a flash
+    try {
+      if (localStorage.getItem('theme') === 'light') {
+        document.documentElement.classList.remove('dark');
+        document.querySelector('meta[name="theme-color"]').setAttribute('content', '#eef2f8');
+      }
+    } catch (e) {}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Geist+Mono:wght@400;500&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
-<body>
+<body class="text-fg font-sans antialiased">
   <app-root></app-root>
 </body>
 </html>

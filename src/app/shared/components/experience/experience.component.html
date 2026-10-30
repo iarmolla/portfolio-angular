@@ -1,0 +1,47 @@
+<section id="experiencia" class="py-24">
+  <div class="wrap">
+    <header appReveal class="reveal-up">
+      <h2 class="section-title">Experiencia</h2>
+      <p class="section-lead">Dónde trabajé y qué estudié, de lo más reciente a lo primero.</p>
+    </header>
+
+    <div appReveal class="timeline mt-14">
+      <span class="timeline-line" aria-hidden="true"></span>
+      <ol>
+        @for (item of experienceService.timeline; track $index; let i = $index) {
+          <li appReveal class="timeline-item" [class.timeline-item--current]="item.current" [style.transition-delay.ms]="i * 110">
+            <span class="timeline-dot" aria-hidden="true">
+              @if (item.current) {
+                <span class="absolute inset-0 rounded-full bg-accent/40 animate-ping"></span>
+              }
+              <span class="relative flex items-center justify-center w-9 h-9 rounded-full border text-sm"
+                [class]="item.type == 'work' ? 'bg-accent border-accent text-bg' : 'bg-surface border-line text-muted'">
+                <i class="fa-solid" [class.fa-briefcase]="item.type == 'work'" [class.fa-graduation-cap]="item.type == 'education'"></i>
+              </span>
+            </span>
+            <article class="timeline-card rounded-xl border border-line bg-surface p-5 text-left">
+              <p class="font-mono text-xs text-muted">
+                {{ item.start }} — {{ item.current ? 'hoy' : item.end }}
+                @if (item.current) {
+                  <span class="ml-2 text-ok">● actual</span>
+                }
+              </p>
+              <h3 class="mt-2 text-lg font-semibold text-fg">{{ item.title }}</h3>
+              <p class="text-sm text-muted">{{ item.place }}</p>
+              @if (item.summary) {
+                <p class="mt-3 text-sm leading-relaxed text-muted">{{ item.summary }}</p>
+              }
+              @if (item.stack.length) {
+                <ul class="flex flex-wrap gap-1.5 mt-4" aria-label="Tecnologías">
+                  @for (tech of item.stack; track tech) {
+                    <li class="chip">{{ tech }}</li>
+                  }
+                </ul>
+              }
+            </article>
+          </li>
+        }
+      </ol>
+    </div>
+  </div>
+</section>

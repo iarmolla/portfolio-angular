@@ -1,36 +1,44 @@
-<section class='text-center flex flex-col gap-3 justify-center items-center xl:m-0'>
-  <section class='flex flex-col justify-center items-center gap-4 lg:pb-24' id="projects1">
-    <h4 class='link-project text-slate-500 text-2xl mt-14 text-center rounded-sm uppercase p-2 lg:mt-20'>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>proyectos
-    </h4>
-    @for (project of (projectService.projects); track $index) {
-    <article class='shadow-lg p-3 text-gray-500 rounded-md border-2 border-gray-200 m-3 sm:mx-20 md:mx-20 lg:w-2/4'>
-      <div class='flex flex-row justify-between'>
-        <span class='uppercase text-left pl-3 text-gray-500 font-semibold mb-4'>{{project.title}}</span>
-        <div class='flex flex-row gap-2 text-xl cursor-pointer'>
-          <a href="{{project.repository}}" target="_blank" rel="noopener" [attr.aria-label]="'Repositorio GitHub de ' + project.title">
-            <i class="fa-brands fa-github" aria-hidden="true"></i>
+<section id="proyectos" class="py-24">
+  <div class="wrap">
+    <header appReveal class="reveal-up">
+      <h2 class="section-title">Proyectos personales</h2>
+      <p class="section-lead">Apps que construí para aprender y probar tecnologías por mi cuenta.</p>
+    </header>
+
+    <div class="mt-12 grid gap-6 md:grid-cols-2">
+      @for (project of projectService.projects; track project.title; let first = $first) {
+        <article appReveal class="project-card reveal-up group flex flex-col rounded-xl border border-line bg-surface overflow-hidden"
+          [class]="first ? 'md:col-span-2 lg:flex-row' : ''">
+          <a [href]="project.link" target="_blank" rel="noopener" class="block shrink-0" [class]="first ? 'lg:w-[58%] lg:border-r lg:border-line' : ''"
+            [attr.aria-label]="'Abrir ' + project.title + ' en una pestaña nueva'">
+            <div class="flex items-center gap-1.5 px-3 h-8 border-b border-line bg-bg/50">
+              <span class="w-2 h-2 rounded-full bg-line"></span>
+              <span class="w-2 h-2 rounded-full bg-line"></span>
+              <span class="w-2 h-2 rounded-full bg-line"></span>
+              <span class="ml-2 font-mono text-[11px] text-muted truncate">{{ domain(project.link) }}</span>
+            </div>
+            <div class="aspect-[16/10] overflow-hidden bg-bg">
+              <img [src]="project.img" [alt]="'Captura de ' + project.title" loading="lazy"
+                class="w-full h-full object-cover object-top transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:scale-[1.04]">
+            </div>
           </a>
-          <a href="{{project.link}}" target="_blank" rel="noopener" [attr.aria-label]="'Ver proyecto ' + project.title + ' en línea'">
-            <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
-          </a>
-        </div>
-      </div>
-      <div>
-        <a href="{{project.link}}" class="flex flex-col justify-center items-center py-2 overflow-hidden" target="_blank" rel="noopener" [attr.aria-label]="'Ver proyecto ' + project.title + ' en línea'">
-          <img src="{{project.img}}" class="image-project hover:animate-pulse" alt="{{project.title}}" />
-        </a>
-      </div>
-      <p className='pl-3'>{{project.description}}</p>
-      <div class='flex flex-row gap-3 pl-3 my-5 font-bold'>
-        @for (tech of project.stack; track $index) {
-          <span>{{tech}}</span>
-        }
-      </div>
-    </article>
-    }
-  </section>
+          <div class="flex flex-col gap-3 flex-1 p-6" [class]="first ? 'lg:justify-center lg:p-10' : ''">
+            <h3 class="font-display text-2xl font-bold tracking-tight text-fg">{{ project.title }}</h3>
+            <p class="text-muted leading-relaxed">{{ project.description }}</p>
+            <ul class="flex flex-wrap gap-1.5" aria-label="Tecnologías">
+              @for (tech of project.stack; track tech) {
+                <li class="chip">{{ tech }}</li>
+              }
+            </ul>
+            <div class="mt-auto pt-3 flex items-center gap-5 font-mono text-sm" [class]="first ? 'lg:mt-4' : ''">
+              <a [href]="project.link" target="_blank" rel="noopener" class="link-accent">Ver demo ↗</a>
+              <a [href]="project.repository" target="_blank" rel="noopener" class="text-muted hover:text-fg transition-colors">
+                <i class="fa-brands fa-github mr-1" aria-hidden="true"></i>Código
+              </a>
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
 </section>

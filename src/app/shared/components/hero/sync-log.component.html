@@ -1,0 +1,35 @@
+<figure class="terminal rounded-xl border border-line bg-surface overflow-hidden">
+  <div class="flex items-center gap-1.5 px-4 h-10 border-b border-line">
+    <span class="w-2.5 h-2.5 rounded-full bg-line"></span>
+    <span class="w-2.5 h-2.5 rounded-full bg-line"></span>
+    <span class="w-2.5 h-2.5 rounded-full bg-line"></span>
+    <span class="ml-3 font-mono text-xs text-muted">sync.log</span>
+  </div>
+  <figcaption class="sr-only">
+    Ejemplo de la sincronización de un conector: descarga liquidaciones por SFTP, normaliza transacciones y concilia ventas contra liquidaciones sin diferencias.
+  </figcaption>
+  <div class="font-mono text-[12.5px] sm:text-sm leading-7 p-5 min-h-[13rem]" aria-hidden="true">
+    <p class="whitespace-pre-wrap break-all">
+      <span class="text-ok">$&nbsp;</span><span class="text-fg">{{ typed() }}</span>@if (shown() === 0) {<span class="cursor"></span>}
+    </p>
+    @for (line of lines.slice(1, shown()); track line.text; let i = $index) {
+      <p class="log-line flex items-baseline gap-2">
+        @if (line.kind === 'step') {
+          <span class="text-accent">▸</span>
+          <span class="text-fg/90 min-w-0 flex-1 sm:flex-none">{{ line.text }}</span>
+          <span class="leader hidden sm:block flex-1"></span>
+          @if (pending() === i + 1) {
+            <span class="spinner shrink-0"></span>
+          } @else {
+            <span class="status-ok text-ok shrink-0">ok</span>
+          }
+        } @else {
+          <span class="text-ok">✓ {{ line.text }}</span>
+        }
+      </p>
+    }
+    @if (shown() === lines.length) {
+      <p><span class="text-ok">$&nbsp;</span><span class="cursor"></span></p>
+    }
+  </div>
+</figure>

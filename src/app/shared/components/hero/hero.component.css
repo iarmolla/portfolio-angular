@@ -1,0 +1,23 @@
+.hero-copy > * {
+    animation: rise .8s var(--ease-out) both;
+    animation-delay: calc(var(--i) * 90ms + 100ms);
+}
+
+.hero-terminal {
+    animation: rise .9s var(--ease-out) both;
+    animation-delay: 550ms;
+}
+
+@keyframes rise {
+    from {
+        opacity: 0;
+        transform: translateY(22px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-copy > *,
+    .hero-terminal {
+        animation: none;
+    }
+}

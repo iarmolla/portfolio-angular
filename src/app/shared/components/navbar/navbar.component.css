@@ -1,0 +1,88 @@
+.site-header {
+    border-bottom: 1px solid transparent;
+    transition: background-color .25s ease, border-color .25s ease;
+}
+
+.site-header.is-scrolled {
+    background-color: rgb(var(--bg) / .82);
+    border-color: rgb(var(--line));
+    backdrop-filter: blur(10px);
+}
+
+/* Reading progress, driven by the page scroll position (no JS) */
+.scroll-progress {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 2px;
+    background: rgb(var(--accent));
+    transform-origin: left;
+    transform: scaleX(0);
+}
+
+@supports (animation-timeline: scroll()) {
+    .scroll-progress {
+        display: block;
+        animation: reading-progress linear both;
+        animation-timeline: scroll(root block);
+    }
+}
+
+@keyframes reading-progress {
+    to {
+        transform: scaleX(1);
+    }
+}
+
+.nav-link {
+    position: relative;
+    padding: .5rem .75rem;
+    font-family: "Geist Mono", ui-monospace, monospace;
+    font-size: .875rem;
+    color: rgb(var(--muted));
+    border-radius: .375rem;
+    transition: color .2s ease;
+}
+
+.nav-link:hover,
+.nav-link.is-active {
+    color: rgb(var(--fg));
+}
+
+.nav-link::after {
+    content: "";
+    position: absolute;
+    left: .75rem;
+    right: .75rem;
+    bottom: .2rem;
+    height: 2px;
+    background: rgb(var(--accent));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .25s var(--ease-out);
+}
+
+.nav-link.is-active::after {
+    transform: scaleX(1);
+}
+
+.mobile-menu {
+    background-color: rgb(var(--bg) / .96);
+    backdrop-filter: blur(10px);
+    animation: menu-in .2s ease-out;
+}
+
+@keyframes menu-in {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mobile-menu {
+        animation: none;
+    }
+}

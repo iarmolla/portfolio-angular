@@ -1,0 +1,23 @@
+<section id="inicio" class="min-h-[92vh] flex items-center pt-28 pb-16">
+  <div class="wrap w-full grid grid-cols-1 gap-12 lg:gap-16 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] items-center">
+    <div class="hero-copy">
+      <p class="eyebrow" style="--i: 0"><i class="fa-solid fa-location-dot mr-1.5" aria-hidden="true"></i>Buenos Aires, AR</p>
+      <h1 class="mt-5 font-display font-extrabold tracking-[-.03em] leading-[.88] text-[clamp(3.5rem,11vw,7.5rem)] text-fg" style="--i: 1">
+        Iván<br>Armolla<span class="text-accent">.</span>
+      </h1>
+      <p class="mt-6 font-mono text-sm sm:text-base text-accent" style="--i: 2">Backend &amp; Full Stack Developer</p>
+      <p class="mt-4 text-lg text-muted max-w-xl leading-relaxed" style="--i: 3">
+        Desarrollo conectores que integran plataformas de pago con sistemas de conciliación, y aplicaciones web con Angular y Node.js.
+      </p>
+      <div class="mt-9 flex flex-wrap items-center gap-3" style="--i: 4">
+        <a href="#contacto" class="btn-primary">Escribime <i class="fa-solid fa-arrow-right text-sm" aria-hidden="true"></i></a>
+        <a href="assets/ivanarmolla.pdf" target="_blank" rel="noopener" class="btn-ghost"><i class="fa-regular fa-file-lines" aria-hidden="true"></i> Ver CV</a>
+        <span class="flex items-center gap-1 ml-1">
+          <a [href]="socialMedia.github" target="_blank" rel="noopener" class="icon-btn text-lg" aria-label="GitHub de Iván Armolla"><i class="fa-brands fa-github" aria-hidden="true"></i></a>
+          <a [href]="socialMedia.linkedin" target="_blank" rel="noopener" class="icon-btn text-lg" aria-label="LinkedIn de Iván Armolla"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a>
+        </span>
+      </div>
+    </div>
+    <app-sync-log class="hero-terminal block" />
+  </div>
+</section>
