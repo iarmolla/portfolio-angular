@@ -4,7 +4,7 @@
 
 Portfolio personal de Iván Armolla, desarrollador backend y full stack. Una sola página con mi experiencia, el stack que usé en cada trabajo, proyectos personales y un formulario de contacto.
 
-La v2 es un rediseño completo con dirección visual **"Consola nocturna"**: fondo azul tinta, acentos en ámbar y, en la portada, una terminal que simula la sincronización de un conector de pagos (lo que hago en mi trabajo diario).
+La v2 es un rediseño completo con dirección visual **"Consola nocturna"**: fondo azul tinta, acentos en lavanda y, en la portada, una terminal que simula la sincronización de un conector de pagos (lo que hago en mi trabajo diario).
 
 ## Características 📋
 

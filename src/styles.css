@@ -11,7 +11,7 @@
     --line: 211 220 234;
     --fg: 18 27 54;
     --muted: 86 98 127;
-    --accent: 143 86 0;
+    --accent: 91 63 209;
     --ok: 11 122 103;
     color-scheme: light;
 }
@@ -22,7 +22,7 @@ html.dark {
     --line: 36 48 79;
     --fg: 230 234 245;
     --muted: 143 155 184;
-    --accent: 255 181 71;
+    --accent: 185 166 255;
     --ok: 94 225 192;
     color-scheme: dark;
 }
