@@ -4,10 +4,10 @@ import { SyncLogComponent } from './sync-log.component';
 
 const NAME = ['Iván', 'Armolla']
 const GLYPHS = 'bcdeghknopqrsuxyz#%&$@'
-const FRAME_MS = 45
-const DECODE_MS = 1150
+const FRAME_MS = 60
+const DECODE_MS = 2000
 // Share of the decode spent only scrambling, while the hero fades in, before letters start resolving
-const SCRAMBLE_ONLY = 0.35
+const SCRAMBLE_ONLY = 0.3
 
 @Component({
   selector: 'app-hero',

@@ -32,7 +32,7 @@ describe('HeroComponent', () => {
     component.decode();
     expect(component.nameLines().join('')).not.toBe('IvánArmolla');
 
-    jasmine.clock().tick(1250);
+    jasmine.clock().tick(2100);
     expect(component.nameLines()).toEqual(['Iván', 'Armolla']);
     jasmine.clock().uninstall();
   });
