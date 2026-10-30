@@ -1,13 +1,13 @@
-import { afterNextRender, Component, OnDestroy, signal } from '@angular/core';
+import { afterNextRender, Component, computed, OnDestroy, signal } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { SyncLogComponent } from './sync-log.component';
 
 const NAME = ['Iván', 'Armolla']
-const GLYPHS = 'bcdeghknopqrsuxyz#%&$@'
-const FRAME_MS = 60
-const DECODE_MS = 2000
-// Share of the decode spent only scrambling, while the hero fades in, before letters start resolving
-const SCRAMBLE_ONLY = 0.3
+const TOTAL_CHARS = NAME.join('').length
+// Wait for the hero fade-in before typing; keystrokes vary around KEY_MS like a person typing
+const START_MS = 350
+const KEY_MS = 115
+const WORD_PAUSE_MS = 280
 
 @Component({
   selector: 'app-hero',
@@ -18,33 +18,40 @@ const SCRAMBLE_ONLY = 0.3
 })
 export class HeroComponent implements OnDestroy {
   socialMedia = environment.socialMedia
-  // Server render and reduced motion show the final name; the browser decodes it once on load
-  nameLines = signal(NAME)
+  // Server render and reduced motion show the full name; the browser types it once on load
+  typed = signal(TOTAL_CHARS)
+  typing = signal(false)
+  nameLines = computed(() => {
+    let remaining = this.typed()
+    return NAME.map((word) => {
+      const part = word.slice(0, Math.max(0, remaining))
+      remaining -= word.length
+      return part
+    })
+  })
+  // The underscore cursor stays on the first line until the second word starts
+  cursorLine = computed(() => this.typing() && this.typed() <= NAME[0].length ? 0 : 1)
   timer?: ReturnType<typeof setTimeout>
   constructor() {
     afterNextRender(() => {
       const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
-      if (!reduceMotion) this.decode()
+      if (!reduceMotion) this.type()
     })
   }
-  // Letters cycle through random glyphs and resolve left to right into the name
-  decode() {
-    const total = NAME.join('').length
-    const start = Date.now()
-    const tick = () => {
-      const elapsed = Date.now() - start
-      let index = 0
-      this.nameLines.set(NAME.map((word) => [...word].map((char) => {
-        const resolveAt = DECODE_MS * (SCRAMBLE_ONLY + (1 - SCRAMBLE_ONLY) * index++ / total)
-        return elapsed >= resolveAt ? char : this.randomGlyph(char)
-      }).join('')))
-      if (elapsed < DECODE_MS) this.timer = setTimeout(tick, FRAME_MS)
+  type() {
+    this.typing.set(true)
+    this.typed.set(0)
+    const next = (count: number) => {
+      this.typed.set(count)
+      if (count >= TOTAL_CHARS) {
+        this.typing.set(false)
+        return
+      }
+      const endOfWord = count === NAME[0].length
+      const delay = KEY_MS * (0.6 + Math.random() * 0.8) + (endOfWord ? WORD_PAUSE_MS : 0)
+      this.timer = setTimeout(() => next(count + 1), delay)
     }
-    tick()
-  }
-  private randomGlyph(char: string): string {
-    const glyph = GLYPHS[Math.floor(Math.random() * GLYPHS.length)]
-    return char === char.toUpperCase() ? glyph.toUpperCase() : glyph
+    this.timer = setTimeout(() => next(1), START_MS)
   }
   ngOnDestroy() {
     clearTimeout(this.timer)

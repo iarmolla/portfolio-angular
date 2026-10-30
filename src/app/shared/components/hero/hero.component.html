@@ -2,9 +2,9 @@
   <div class="wrap w-full grid grid-cols-1 gap-12 lg:gap-16 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] items-center">
     <div class="hero-copy">
       <p class="eyebrow" style="--i: 0"><i class="fa-solid fa-location-dot mr-1.5" aria-hidden="true"></i>Buenos Aires, AR</p>
-      <h1 class="mt-5 font-display font-extrabold tracking-[-.03em] leading-[.88] text-[clamp(3.5rem,11vw,7.5rem)] text-fg" style="--i: 1">
+      <h1 class="mt-5 min-h-[1.76em] font-display font-extrabold tracking-[-.03em] leading-[.88] text-[clamp(3.5rem,11vw,7.5rem)] text-fg" style="--i: 1">
         <span class="sr-only">Iván Armolla</span>
-        <span aria-hidden="true">{{ nameLines()[0] }}<br>{{ nameLines()[1] }}<span class="text-accent">_</span></span>
+        <span aria-hidden="true">{{ nameLines()[0] }}@if (cursorLine() === 0) {<span class="name-cursor" [class.is-idle]="!typing()">_</span>}<br>{{ nameLines()[1] }}@if (cursorLine() === 1) {<span class="name-cursor" [class.is-idle]="!typing()">_</span>}</span>
       </h1>
       <p class="mt-6 font-mono text-sm sm:text-base text-accent" style="--i: 2">Backend &amp; Full Stack Developer</p>
       <p class="mt-4 text-lg text-muted max-w-xl leading-relaxed" style="--i: 3">

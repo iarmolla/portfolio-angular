@@ -26,14 +26,23 @@ describe('HeroComponent', () => {
     expect(component.nameLines()).toEqual(['Iván', 'Armolla']);
   });
 
-  it('should scramble the name and resolve it after the decode', () => {
+  it('should type the name with the cursor moving to the second line', () => {
+    // Fixed rhythm: every keystroke takes exactly 115ms
+    spyOn(Math, 'random').and.returnValue(0.5);
     jasmine.clock().install();
-    jasmine.clock().mockDate(new Date(2026, 0, 1));
-    component.decode();
-    expect(component.nameLines().join('')).not.toBe('IvánArmolla');
+    component.type();
+    expect(component.nameLines()).toEqual(['', '']);
+    expect(component.cursorLine()).toBe(0);
 
-    jasmine.clock().tick(2100);
+    // "Iván" ends at 350 + 3 × 115 = 695ms; "A" waits for the 280ms pause between words
+    jasmine.clock().tick(900);
+    expect(component.nameLines()).toEqual(['Iván', '']);
+    expect(component.cursorLine()).toBe(0);
+
+    jasmine.clock().tick(900);
     expect(component.nameLines()).toEqual(['Iván', 'Armolla']);
+    expect(component.cursorLine()).toBe(1);
+    expect(component.typing()).toBeFalse();
     jasmine.clock().uninstall();
   });
 });

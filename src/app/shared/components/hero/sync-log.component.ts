@@ -11,6 +11,8 @@ const STEP_MS = 650
 const PENDING_MS = 520
 const RESOLVE_MS = 220
 const RESTART_MS = 4500
+// On load, wait for the hero name to finish typing so both animations don't compete
+const FIRST_RUN_DELAY_MS = 2000
 
 @Component({
   selector: 'app-sync-log',
@@ -35,14 +37,15 @@ export class SyncLogComponent implements OnDestroy {
   constructor() {
     afterNextRender(() => {
       const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
-      if (!reduceMotion) this.play()
+      if (!reduceMotion) this.play(FIRST_RUN_DELAY_MS)
     })
   }
-  play() {
+  // Clears the terminal right away and starts typing after the delay
+  play(delay = 0) {
     this.running.set(true)
     this.shown.set(0)
     this.typed.set('')
-    this.typeCommand(0)
+    this.timer = setTimeout(() => this.typeCommand(0), delay)
   }
   typeCommand(chars: number) {
     const command = this.lines[0].text
