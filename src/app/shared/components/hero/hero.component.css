@@ -8,21 +8,6 @@
     animation-delay: 550ms;
 }
 
-/* Underscore cursor that types the name, then waits blinking */
-.name-cursor {
-    color: rgb(var(--accent));
-}
-
-.name-cursor.is-idle {
-    animation: cursor-blink 1.1s step-end infinite;
-}
-
-@keyframes cursor-blink {
-    50% {
-        opacity: 0;
-    }
-}
-
 @keyframes rise {
     from {
         opacity: 0;
@@ -32,8 +17,7 @@
 
 @media (prefers-reduced-motion: reduce) {
     .hero-copy > *,
-    .hero-terminal,
-    .name-cursor.is-idle {
+    .hero-terminal {
         animation: none;
     }
 }
